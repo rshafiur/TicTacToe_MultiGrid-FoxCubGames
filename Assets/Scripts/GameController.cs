@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -26,6 +27,8 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     private int[] markedCells; //ID's which cell marked by which player
 
+    Dictionary<int, int> turnHistory;
+
 	void Awake ()
     {
         //Observer Pattern for grid cell selection
@@ -47,6 +50,7 @@ public class GameController : MonoBehaviour {
         backBtn.SetActive(false);
         whosTurn = 0;
         turnCount = 0;
+        turnHistory = new Dictionary<int, int>();
         turnText.text = "Player " + (whosTurn + 1) + "'s Turn";
 
         //Get Image and grid info
@@ -82,6 +86,10 @@ public class GameController : MonoBehaviour {
     {
         markedCells[cell.cellNumber] = whosTurn + 1;
         turnCount++;
+
+        //Storing the turn number with selected cell number as the history of every turn
+        //For odd number turns count as Player 1's and even number as Player 2's turn 
+        turnHistory.Add(turnCount, cell.cellNumber);
 
         if (whosTurn == 0)
         {
