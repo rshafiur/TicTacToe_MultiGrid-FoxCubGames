@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GameController : MonoBehaviour {
 
@@ -42,6 +44,7 @@ public class GameController : MonoBehaviour {
 
     void Start()
     {
+        LoadTurnHistory();
         GameSetup();
     }
 
@@ -205,10 +208,37 @@ public class GameController : MonoBehaviour {
         BoxCollider2D[] colliders = board.GetComponentsInChildren<BoxCollider2D>();
         foreach (BoxCollider2D col in colliders)
             col.enabled = false;
-        
+
         //Enable Back to MainMenu option
         backBtn.SetActive(true);
+
+        //Save current game turn history for future uses
+        SaveTurnHistory();
     }
 
+    private void SaveTurnHistory()
+    {
+        BinaryFormatter TurnHistoryBF = new BinaryFormatter();
+        FileStream TurnHistoryFS = File.Create(Application.persistentDataPath + "/TurnHistoryData.dat");
+
+        TurnHistoryBF.Serialize(TurnHistoryFS, turnHistory);
+        TurnHistoryFS.Close();
+    }
+
+    void LoadTurnHistory()
+    {
+        if (File.Exists(Application.persistentDataPath + "/TurnHistoryData.dat"))
+        {
+            BinaryFormatter TurnHistoryBF = new BinaryFormatter();
+            FileStream TurnHistoryFS = File.Open(Application.persistentDataPath + "/TurnHistoryData.dat", FileMode.Open);
+
+            turnHistory = (Dictionary<int, int>)TurnHistoryBF.Deserialize(TurnHistoryFS);
+            TurnHistoryFS.Close();
+
+            Debug.Log(turnHistory.Count + " in Total turn happen the Last game");
+            Debug.Log(turnHistory[turnHistory.Count] + " is the last cell selected by the Winner");
+
+        }
+    }
 
 }

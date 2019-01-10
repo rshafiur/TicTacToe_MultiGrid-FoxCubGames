@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D78D1AEC-D4FC-008F-EE82-FB4CF9016F77}</ProjectGuid>
+    <ProjectGuid>{581DC8AD-3F53-9DCF-5458-02E500151D76}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -230,7 +230,7 @@
  <HintPath>D:/Unity/2017.4.17f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
- <HintPath>D:/Unity Projects/Interview Tasks/Tic Tac Toe - Multi Level/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ <HintPath>D:/Unity Projects/Interview Tasks/TicTacToe - Multi Grid/TicTacToe_MultiGrid-FoxCubGames/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/rshaf/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
